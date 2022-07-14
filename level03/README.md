@@ -7,7 +7,7 @@ and 21 (inclusive). Then a string is decrypted by applying xoring the key with
 each of its characters. If the result is "Congratulations!" then a shell we get
 a shell.
 
-The string is `Q}|u\`sfg~sf{}|a3`. To find the key all we need is to perform one
+The string "is Q}|u\`sfg~sf{}|a3". To find the key all we need is to perform one
 operation: `Q xor C` (0x51 xor 0x43), which is equal to 0x12 (18 in decimal).
 Then we can check `Q xor 0x12` will be equal to _C_. This is also true for every
 other character of string.
