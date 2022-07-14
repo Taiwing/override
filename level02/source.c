@@ -6,9 +6,9 @@
 int		main(void)
 {
 	size_t	rd;
-	char	password[14];
-	char	flag[6];
-	char	username[12];
+	char	password[112];
+	char	flag[48];
+	char	username[96];
 	FILE	*stream = NULL;
 
 	bzero(username, sizeof(username));
