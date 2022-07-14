@@ -1,7 +1,7 @@
 ## Pass simple condition (level00)
 
-This [binary](source.c) takes an argument through `scanf` which is supposed to
-be a password. It is simply an int that we can find hardcoded in the program
+This [binary](source.c) takes an input through `scanf` which is supposed to be
+a password. It is simply an int that we can find hardcoded in the program
 (0x149c which is 5276 in decimal). When the password matches, we get a shell.
 
 ```shell
