@@ -17,7 +17,7 @@ int		verify_user_pass(char *pass)
 
 int		main(void)
 {
-	char	input[16];
+	char	input[76];
 	int		result, ret = 1;
 
 	bzero(input, sizeof(input));
