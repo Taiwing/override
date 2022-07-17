@@ -23,7 +23,7 @@ uint32_t	get_unum(void)
 
 int			read_number(uint32_t *data)
 {
-	uint32_t	index;
+	int	index;
 
 	printf(" Index: ");
 	index = get_unum();
@@ -34,7 +34,7 @@ int			read_number(uint32_t *data)
 int			store_number(uint32_t *data)
 {
 	uint32_t	number;
-	uint32_t	index;
+	int			index;
 
 	printf(" Number: ");
 	number = get_unum();
