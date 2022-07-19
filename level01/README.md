@@ -1,7 +1,7 @@
 ## fgets overflow (level01)
 
-This [binary](source.c) is supposed to be a login prompt. I takes a username
-which is compared to "dat\_wil" to be verified and then it takes as password.
+This [binary](source.c) is supposed to be a login prompt. It takes a username
+which is compared to "dat\_wil" to be verified and then it takes a password.
 The password does not matter as it does not lead to anything either way, but the
 `fgets` call is faulty. It reads up to 100 characters into a 76 bytes buffer.
 

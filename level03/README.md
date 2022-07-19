@@ -3,9 +3,8 @@
 This [binary](source.c) takes user input through a "%d" scanf call. The value
 passed to the program is then substracted from the constant 0x1337d00d. The
 result will be the key parameter for the _decrypt_ function if it is between 1
-and 21 (inclusive). Then a string is decrypted by applying xoring the key with
-each of its characters. If the result is "Congratulations!" then a shell we get
-a shell.
+and 21 (inclusive). Then a string is decrypted by xoring the key with each of
+its characters. If the result is "Congratulations!" then a shell we get a shell.
 
 The string is "Q}|u\`sfg~sf{}|a3". To find the key all we need is to perform one
 operation: `Q xor C` (0x51 xor 0x43), which is equal to 0x12 (18 in decimal).

@@ -1,7 +1,7 @@
 # Got some more printf (level05)
 
 This [binary](source.c) takes 100 bytes of user input through a secure `fgets`
-call. Then it loops on the character of the resulting string and basically
+call. Then it loops on the characters of the resulting string and basically
 applies a `tolower` function to each one. When it's done, it prints the _input_
 buffer directly with `printf` and exits.
 
@@ -17,8 +17,8 @@ iiii0x69696969
 ```
 
 We reach into our buffer at the 10th parameter. Now, since `exit` is called
-right after the printf, what we're gonna do is overwrite it's got address and
-replace it with the address of our shellcode that we're going to give in input.
+right after the printf, what we're gonna do is overwrite its got address and
+replace it with the address of the shellcode that we're going to give as input.
 
 Using ltrace, we can get the address of the input buffer:
 
@@ -36,10 +36,10 @@ exit(0 <unfinished ...>
 +++ exited (status 0) +++
 ```
 
-This traces each library calls and shows their arguments and return values. What
-is a little bit annoying with ltrace is that when it detects a character pointer
-or buffer it automatically shows a string and not the address, except on the
-return value. Since, on success, `fgets` returns the buffer it was given in
+This traces each library calls and shows their parameters and return values.
+What is a little bit annoying with ltrace is that when it detects a character
+pointer or buffer it automatically shows a string and not the address, except on
+the return value. Since, on success, `fgets` returns the buffer it was given in
 input, the address of our buffer is: 0xffffdae8.
 
 Here is the shellcode we are going to use:
@@ -73,7 +73,7 @@ string:
 This should work, although we have a little problem since some bytes in the
 shellcode do match uppercase ascii letters. If we just put it in our buffer like
 that these values are going to be modified and the shellcode wont work. What we
-need to do is add null byte after our format string and then our payload. This
+need to do is add a null byte after our format string and then our payload. This
 will work because `fgets` does not stop on a null byte but either on a newline
 or an EOF and it will protect our payload since `strlen` will stop on the null
 byte.

@@ -41,9 +41,9 @@ is to set `exit`'s got address to the place where `system` is called:
 We're gonna use the address of the instruction just above system since it loads
 its argument into the appropriate register. 0x400a85 = 4196997 in base 10, which 
 is the value we want to write at `exit`'s got address. So this is going to be
-our field width to set the number of bytes written by printf. Then can pass the
-address we want to write to as an argument to n. This will be the last thing on
-the stack at the moment `printf` is called which will be the start of the
+our field width to set the number of bytes written by printf. Then we can pass
+the address we want to write to as an argument to n. This will be the last thing
+on the stack at the moment `printf` is called which will be the start of the
 _password_ buffer. So we pass `exit`'s got address as a password.
 
 ```shell

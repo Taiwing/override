@@ -1,9 +1,9 @@
 # Simple but leet hash function (level06)
 
 This [binary](source.c) takes a login into input and then a "serial" value. A
-kind of hashing function is then applied on login string and the resulting value
-is compared against the serial given by the user. If they are equal, we get a
-shell.
+kind of hashing function is then applied on the login string and the resulting
+value is compared against the serial given by the user. If they are equal, we
+get a shell.
 
 There is a ptrace call that somewhat makes the job harder, but it's really
 simple anyway. All we have to do is compile an other binary that will just

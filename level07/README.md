@@ -4,10 +4,10 @@ This [binary](source.c) is basically a command prompt. The user can store a
 number, read a number or quit. The store function is the vulnerable one.  It
 will write a 32bit unsigned int into a *data* array of 100 elements. The user
 will provide the index at which to write the *number*. However the only check
-the program does on the user provided input is that it is not divisible by three
-(*number* mod 3 != 0). This means that providing that it passes this condition
-the user can write anywhere within a 32bit integer reach. It can take indexes
-way beyond the length of the array, or even in the negatives.
+the program does on the user provided index is that it is not divisible by three
+(*index* mod 3 != 0). This means that if it passes this condition the user can
+write anywhere within a 32bit integer reach. It can take indexes way beyond the
+length of the array, or even in the negatives.
 
 The simplest thing to do here would be a
 [ret2libc](https://bufferoverflows.net/ret2libc-exploitation-example/) exploit.
@@ -28,8 +28,8 @@ Input command: store
 ```
 
 Now since the index 114 wont directly work we could do a got overwrite. The got
-table is way before the stack in memory the index needs to be negative but this
-is actually possible. The problem here is also passing a parameter. It can
+table is way before the stack in memory so the index needs to be negative but
+this is actually possible. The problem here is also passing a parameter. It can
 probably be done by overwriting parameters already given to function whose got
 address is being overwritten, but this is a lot of work. The simplest solution
 is to overflow our index.

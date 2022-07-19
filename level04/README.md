@@ -1,10 +1,10 @@
 # Cant trace me (level04)
 
 This [binary](source.c) is a simple case of `gets` being used and being as
-vulnerable as ever. The all `fork`/`ptrace` setup just makes it hard to use gdb
-on this program's child process. But this is not really needed. From gdb we
-still can see how the stack looks like. We can compute how many bytes of padding
-we need instead of seeing it empirically with test payloads as we do usually.
+vulnerable as ever. The `fork`/`ptrace` setup just makes it hard to use gdb on
+this program's child process. But this is not really needed. From gdb we still
+can see how the stack looks like. We can compute how many bytes of padding we
+need instead of seeing it empirically with test payloads as we do usually.
 
 Since this is a classic `gets` buffer overflow we can overwrite by any number of
 bytes we need, which means that we can simply execute a
